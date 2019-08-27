@@ -40,7 +40,7 @@ class ProjectedAdaptiveLogSoftmax(nn.Module):
                         nn.Parameter(torch.Tensor(d_proj, d_embed))
                     )
                 else:
-                    self.out_projs.append(None)
+                    self.out_projs.append(nn.Parameter())
 
             self.out_layers.append(nn.Linear(d_embed, n_token))
         else:
@@ -57,7 +57,7 @@ class ProjectedAdaptiveLogSoftmax(nn.Module):
         self.keep_order = keep_order
 
     def _compute_logit(self, hidden, weight, bias, proj):
-        if proj is None:
+        if proj.numel() == 0:
             logit = F.linear(hidden, weight, bias=bias)
         else:
             # if CUDA_MAJOR <= 9 and CUDA_MINOR <= 1:
