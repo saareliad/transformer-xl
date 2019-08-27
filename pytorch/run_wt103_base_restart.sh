@@ -5,7 +5,7 @@ if [[ $1 == 'train' ]]; then
     python train.py \
         --cuda \
         --restart \
-        --restart-dir ./LM-TFM-wt103/20190827-145605/ \
+        --restart_dir ./LM-TFM-wt103/20190827-145605/ \
         --data ../data/wikitext-103/ \
         --dataset wt103 \
         --adaptive \
